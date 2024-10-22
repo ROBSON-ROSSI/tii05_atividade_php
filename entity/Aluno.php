@@ -1,9 +1,11 @@
 <?php
+require_once 'entity/Disciplina.php';
 class Aluno {
     private $matricula;
     private $nome;
    
     // Implemente o array de discplinas que será utilizado pela entidade Aluno
+    
 
     public function __construct($matricula, $nome) {
         $this->matricula = $matricula;
@@ -23,5 +25,15 @@ class Aluno {
     }
 
     // Implemente os getters e setters para as ler e inserir um array de discplinas no objeto aluno
+    public function setMatricula($matricula) {
+        $this->matricula = $matricula;
+    }
+
+    
+
+    public function getAll(){
+        
+
+    }
 }
 ?>

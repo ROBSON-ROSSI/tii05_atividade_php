@@ -1,8 +1,15 @@
 <?php
-require_once './dao/DisciplinaDAO.php';
+require_once 'dao/DisciplinaDAO.php';
+require_once 'entity/Disciplina.php';
+require_once 'dao/AlunoDAO.php';
 
 $disciplinaDAO = new DisciplinaDAO();
+
+$alunos = new AlunoDAO();
+
 $disciplinaID = $_GET['id'] ?? null;
+$disciplinas = new Disciplina($disciplinaID,"Programação em PHP","8 horas");
+$aluno = new Aluno($disciplinaID,'Robson');
 
 if ($disciplinaID) {
     $disciplina = $disciplinaDAO->getDisciplinaWithAlunos($disciplinaID);
@@ -23,13 +30,13 @@ if ($disciplinaID) {
 <body>
     <h1>Detalhes da Disciplina</h1>
 
-    <p><strong>ID:</strong> <?= $disciplina->getId(); ?></p>
-    <p><strong>Nome:</strong> <?= $disciplina->getNome(); ?></p>
-    <p><strong>Carga Horária:</strong> <?= $disciplina->getCargaHoraria(); ?> horas</p>
+    <p><strong>ID:</strong> <?= $disciplinas->getId(); ?></p>
+    <p><strong>Nome:</strong> <?= $disciplinas->getNome(); ?></p>
+    <p><strong>Carga Horária:</strong> <?= $disciplinas->getCargaHoraria(); ?> horas</p>
 
     <h2>Alunos Matriculados</h2>
     <ul>
-        <?php foreach ($disciplina->getAlunos() as $aluno): ?>
+        <?php foreach ($disciplinas->getAlunos() as $aluno): ?>
             <li><?= $aluno->getNome(); ?></li>
         <?php endforeach; ?>
     </ul>
